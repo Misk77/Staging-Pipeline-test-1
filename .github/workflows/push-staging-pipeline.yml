@@ -38,14 +38,18 @@ jobs:
     if: needs.check_staging_merge.outputs.merged == 'true'
   
     steps:
-      - name: Manually trigger workflow with inputs
-        run: |
-          curl -X POST \
-            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-            -H "Accept: application/vnd.github.v3+json" \
+
+
+  manual_trigger:
+    needs: check_staging_merge
+    runs-on: ubuntu-latest
+    if: needs.check_staging_merge.outputs.merged == 'true'
+
+    steps:
+
+
             https://api.github.com/repos/${{ github.repository }}/actions/workflows/pr-staging-pipeline.yml/dispatches \
             -d '{"ref":"main"}'
-          
 
 
         
