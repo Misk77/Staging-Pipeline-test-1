@@ -32,13 +32,6 @@ jobs:
             echo "::set-output name=merged::false"
           fi
 
-  manual_trigger:
-    needs: check_staging_merge
-    runs-on: ubuntu-latest
-    if: needs.check_staging_merge.outputs.merged == 'true'
-  
-    steps:
-
 
   manual_trigger:
     needs: check_staging_merge
