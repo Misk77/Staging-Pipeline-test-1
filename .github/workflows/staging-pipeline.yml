@@ -16,7 +16,7 @@ jobs:
       # Add steps to build and test the code
       - name: Build and test
         run: |
-          echo "PR - Running staging pipeline"
+          echo "Running staging pipeline"
 
   merge_to_master:
     needs: staging-pipeline
