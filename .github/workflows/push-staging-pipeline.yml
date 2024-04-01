@@ -1,11 +1,23 @@
-name: Workflow on Staging Merge
+name: PUSH Staging Pipeline
 
 on:
   push:
     branches:
       - staging
+      - master
 
 jobs:
+  staging-pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Add steps to build and test the code
+      - name: Build and test
+        run: |
+          echo "PUSH - Running staging pipeline"
+
+      # After successful testing, create a pull request to merge staging into master
+  # After successful testing, create a pull request to merge staging into master
   check_staging_merge:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master' && github.event_name == 'push'
@@ -33,3 +45,6 @@ jobs:
             -H "Accept: application/vnd.github.v3+json" \
             https://api.github.com/repos/${{ github.repository }}/actions/workflows/NAME_OF_YOUR_WORKFLOW/dispatches \
             -d '{"ref":"main", "inputs":{"input_name":"input_value"}}'
+
+        
+
