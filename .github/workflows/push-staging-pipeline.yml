@@ -16,6 +16,13 @@ jobs:
           echo "PUSH - Running staging pipeline"
 
       # After successful testing, create a pull request to merge staging into master
+  # After successful testing, create a pull request to merge staging into master
+  merge_to_master:
+    needs: [staging-pipeline]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch'
+
+    steps:
       - name: Create Pull Request to Master
         if: success()
         uses: actions/checkout@v4
