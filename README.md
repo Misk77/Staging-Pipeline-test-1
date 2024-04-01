@@ -13,8 +13,7 @@ notes:
 1. Make it easier if the default branch is the staging branch
 2. master and staging should be protected
 3. master requrires reviews
-4. 
 
 
-PR 7
+PR 8
 
