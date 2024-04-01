@@ -39,10 +39,10 @@ jobs:
     if: needs.check_staging_merge.outputs.merged == 'true'
 
     steps:
-
-
-            https://api.github.com/repos/${{ github.repository }}/actions/workflows/pr-staging-pipeline.yml/dispatches \
-            -d '{"ref":"main"}'
+      - name: Manually trigger workflow with inputs
+      run: |
+        https://api.github.com/repos/${{ github.repository }}/actions/workflows/pr-staging-pipeline.yml/dispatches \
+        -d '{"ref":"main"}'
 
 
         
