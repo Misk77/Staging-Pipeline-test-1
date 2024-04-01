@@ -1,4 +1,4 @@
-name: "Staging Pipeline"
+name: Staging Pipeline
 
 on:
   pull_request:
@@ -9,7 +9,7 @@ on:
       - staging
 
 jobs:
-  staging-pipeline:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,7 +19,7 @@ jobs:
           echo "Running staging pipeline"
 
   merge_to_master:
-    needs: staging-pipeline
+    needs: build
     runs-on: ubuntu-latest
     if: github.event_name == 'workflow_dispatch'
 
