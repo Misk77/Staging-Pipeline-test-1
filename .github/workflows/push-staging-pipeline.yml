@@ -20,11 +20,10 @@ jobs:
   merge_to_master:
     needs: [staging-pipeline]
     runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch'
-
     steps:
       - name: Create Pull Request to Master
         if: success()
         uses: actions/checkout@v4
         with:
           ref: master
+  
