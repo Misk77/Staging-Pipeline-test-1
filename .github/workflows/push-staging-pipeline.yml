@@ -1,12 +1,12 @@
-name: PUSH - Staging Pipeline
+name: PUSH Staging Pipeline
 
-on: 
+on:
   push:
     branches:
       - staging
 
 jobs:
-  push-staging-pipeline:
+  staging-pipeline:
     runs-on: ubuntu-latest
 
     steps:
@@ -15,18 +15,9 @@ jobs:
         run: |
           echo "PUSH - Running staging pipeline"
 
-  merge_to_master:
-    needs: push-staging-pipeline
-    runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch'
-
-    steps:
-      - name: Checkout code
+      # After successful testing, create a pull request to merge staging into master
+      - name: Create Pull Request to Master
+        if: success()
         uses: actions/checkout@v4
-
-      # Add steps to merge code to master branch
-      - name: Merge to master
-        run: |
-          # Placeholder for merging code to master
-          echo "Staging is approved and merged , now this code can be merged to master branch"
-
+        with:
+          ref: master
