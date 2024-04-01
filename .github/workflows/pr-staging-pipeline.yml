@@ -1,0 +1,17 @@
+name: PR - Staging Pipeline
+
+on:
+  pull_request:
+    branches:
+      - staging
+
+jobs:
+  pr-staging-pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      # Add steps to build and test the code
+      - name: Build and test
+        run: |
+          echo "PR - Running staging pipeline"
+
+ 

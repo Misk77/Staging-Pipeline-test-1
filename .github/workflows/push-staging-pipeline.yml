@@ -1,0 +1,23 @@
+name: PUSH Staging Pipeline
+
+on:
+  push:
+    branches:
+      - staging
+
+jobs:
+  staging-pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Add steps to build and test the code
+      - name: Build and test
+        run: |
+          echo "PUSH - Running staging pipeline"
+
+      # After successful testing, create a pull request to merge staging into master
+      - name: Create Pull Request to Master
+        if: success()
+        uses: actions/checkout@v4
+        with:
+          ref: master
