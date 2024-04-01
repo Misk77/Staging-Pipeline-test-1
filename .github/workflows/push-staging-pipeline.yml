@@ -40,9 +40,10 @@ jobs:
 
     steps:
       - name: Manually trigger workflow with inputs
-      run: |
-        https://api.github.com/repos/${{ github.repository }}/actions/workflows/pr-staging-pipeline.yml/dispatches \
-        -d '{"ref":"main"}'
+        run: |
+          https://api.github.com/repos/${{ github.repository }}/actions/workflows/pr-staging-pipeline.yml/dispatches \
+          -d '{"ref":"main"}'
+
 
 
         
